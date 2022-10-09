@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title><%= htmlWebpackPlugin.options.title %></title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+  </head>
+
+  <body>
+    <div class="background">
+      <div class="weather-box">
+        <div class="weather-city"></div>
+        <div class="weather-country"></div>
+        <div class="weather-temp">
+        </div>
+        <div class="weather-wind">
+          <p>Wind Speed</p>
+        </div>
+      </div>
+      <div class="search-box">
+        <input type="text" class="search-input" placeholder="Location..."/>
+        <button class="search-button"><span class="material-symbols-outlined">
+          search
+          </span></button>
+      </div>
+      <div class="atmosphere-box">
+        <div class="atmosphere-icon"></div>
+        <div class="atmosphere-cloud"></div>
+        <div class="atmosphere-desc"></div>
+        <div class="atmosphere-humidity">
+          <p>Humidity</p>
+        </div>
+      </div>
+      <div class="forecast-box">
+        <div class="three-hour" id="forecast-1"></div>
+        <div class="three-hour" id="forecast-2"></div>
+        <div class="three-hour" id="forecast-3"></div>
+        <div class="three-hour" id="forecast-4"></div>
+        <div class="three-hour" id="forecast-5"></div>
+        <div class="three-hour" id="forecast-6"></div>
+      </div>
+  </div>
+  </body>
+</html>

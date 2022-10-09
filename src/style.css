@@ -1,3 +1,74 @@
-.hello {
-  color: green;
+:root {
+  /* Colour variables */
 }
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+svg {
+  filter: brightness(0) invert(1);
+}
+
+.background {
+  background-image: url("./assets/background.png");
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: 3fr 1fr 2fr;
+  color: white;
+}
+
+.weather-box {
+  grid-area: 1 / 1 / 3 / 2;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  border: 2px solid white ;
+}
+
+.weather-box > div {
+
+}
+
+.search-box {
+  grid-area: 3 / 1 / 4 / 2;
+  display: flex;
+  align-items: center;
+  padding-left: 30px;
+}
+
+.atmosphere-box {
+  grid-area: 1 / 3 / 4 / 4;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  border: 2px solid white ;
+}
+
+.atmosphere-box > div {
+}
+
+.forecast-box {
+  grid-area: 4 / 1 / 6 / 4;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 30px;
+  border: 2px solid white ;
+}
+
+.forecast-box > div {
+  height: 100px;
+  margin: 5px
+}
+
+.three-hour, .atmosphere-box > div, .weather-box > div {
+  border: 2px solid white ;
+}
+
+/* Footer */

@@ -5,7 +5,9 @@ module.exports = {
   mode: 'development',
   entry: {
     index: './src/index.js',
-    getWeather: '.src/getWeather.js',
+    getWeather: './src/getWeather.js',
+    domFunctions: './src/DOMfunctions.js',
+    utility: './src/utility.js',
   },
   devtool: 'inline-source-map',
   devServer: {
@@ -13,7 +15,8 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Output Management',
+      title: 'Weather',
+      template: './src/template.html',
     }),
   ],
   output: {
@@ -29,6 +32,10 @@ module.exports = {
       {
         test: /\.css$/i,
         use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource',
       },
     ],
   },

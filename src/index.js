@@ -1,18 +1,34 @@
-import { getForecast, getWeather, getCoords } from './getWeather';
 import './style.css';
+import { getForecast, getCoords } from './getWeather';
+import renderWeather from './DOMfunctions';
 
-async function getWeatherData() {
-  const element = document.createElement('div');
+const searchButton = document.querySelector('.search-button');
+const searchInput = document.querySelector('.search-input');
 
-  element.innerHTML = 'Hello webpack';
-  element.classList.add('hello');
-  const coords = await getCoords('London');
-  const weather = await getWeather(coords[0].lon, coords[0].lat);
-  const forecast = await getForecast(coords[0].lon, coords[0].lat);
-  console.log(weather.main.temp);
-  console.log(forecast.list[0].main.temp);
-  document.body.append(element);
-  return element;
+async function getWeatherData(firstLoad = true) {
+  let cityName;
+  if (firstLoad) {
+    cityName = 'London';
+  } else {
+    cityName = searchInput.value;
+  }
+  const coords = await getCoords(cityName);
+  console.log(coords);
+  const forecast = await getForecast(coords.coord.lon, coords.coord.lat);
+  console.log(forecast.list);
+  renderWeather(coords, forecast);
 }
+
+searchButton.addEventListener('click', () => {
+  getWeatherData(false);
+  searchInput.value = '';
+});
+
+searchInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    getWeatherData(false);
+    searchInput.value = '';
+  }
+});
 
 getWeatherData();
