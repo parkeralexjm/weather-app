@@ -35,7 +35,7 @@ export default function renderWeather(data, forecast, unit) {
   const { humidity } = data.main;
   const atmosphereHumidity = document.querySelector('.atmosphere-humidity');
   atmosphereHumidity.innerHTML = `<span class="material-symbols-outlined">humidity_low</span><span>${humidity}%</span>`;
-  // for the next 6 3 hour forecasts get each and display
+  // for the next 10 3 hour forecasts get each and display
   const hourly = forecast.list;
   for (let i = 0; i <= 9; i += 1) {
     const time = hourly[i].dt + data.timezone;

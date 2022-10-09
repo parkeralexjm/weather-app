@@ -1,4 +1,4 @@
-export function lookupIcon(code) {
+function lookupIcon(code) {
   // Use the icon code from the API to select the correct symbol
   if (code === '01d') {
     return '<span class="material-symbols-outlined">sunny</span>';
@@ -45,7 +45,7 @@ export function lookupIcon(code) {
   return false;
 }
 
-export function formatDate(date) {
+function formatDate(date) {
   // Convert date from unix to hour am/pm and show in local timezone
   const newDate = new Date(date * 1000);
   let shortDate = parseInt(newDate.toLocaleTimeString(), 10);
@@ -64,13 +64,14 @@ export function formatDate(date) {
   return shortDate + timeOfDay;
 }
 
-export function getDay(date) {
+// Get the day from the unix timecode
+function getDay(date) {
   const day = new Date(date * 1000).getDay();
   const dayArray = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
   return dayArray[day];
 }
 
-export function convertWind(speed, unit) {
+function convertWind(speed, unit) {
   // Convert wind from m/s to kmh
   if (unit === 'metric') {
     return `${Math.round(speed * 2.23694)} mph`;
@@ -79,19 +80,25 @@ export function convertWind(speed, unit) {
   return `${Math.round(speed)} mph`;
 }
 
-export function assignTempSymbol(temp, unit) {
+// Attach the correct symbol to the temperature
+function assignTempSymbol(temp, unit) {
   if (unit === 'metric') {
     return `${Math.round(temp)} \u00B0C`;
   }
   return `${Math.round(temp)} F`;
 }
 
+// Convert the country code to the full name
 const regionNames = new Intl.DisplayNames(['en'], { type: 'region' });
 
-export function lookupCountry(country) {
+function lookupCountry(country) {
   try {
     return regionNames.of(country);
   } catch (err) {
     return '';
   }
 }
+
+export {
+  lookupCountry, assignTempSymbol, convertWind, getDay, lookupIcon, formatDate,
+};
