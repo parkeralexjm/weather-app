@@ -11,7 +11,7 @@ const temperatureF = document.querySelector('.temperature-change-f');
 let lastCity = '';
 let currentUnit = '';
 // Main function to control loading of the page
-export default async function getWeatherData(firstLoad = true, unit = 'imperial') {
+export default async function getWeatherData(firstLoad = true, unit = 'metric') {
   let cityName = '';
   // Check for first load
   if (firstLoad) {
