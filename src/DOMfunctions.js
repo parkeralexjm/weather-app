@@ -1,6 +1,8 @@
-import { formatDate, lookupIcon } from './utility';
+import {
+  assignTempSymbol, convertWind, formatDate, lookupIcon, lookupCountry, getDay,
+} from './utility';
 
-export default function renderWeather(data, forecast) {
+export default function renderWeather(data, forecast, unit) {
   // Get the city name
   const { name } = data;
   const weatherCity = document.querySelector('.weather-city');
@@ -8,16 +10,16 @@ export default function renderWeather(data, forecast) {
   // Get the country
   const { country } = data.sys;
   const weatherCountry = document.querySelector('.weather-country');
-  weatherCountry.textContent = country;
+  weatherCountry.textContent = lookupCountry(country);
 
   // Get the temp and apply to the DOM
   const { temp } = data.main;
   const weatherTemp = document.querySelector('.weather-temp');
-  weatherTemp.innerHTML = `${Math.round(temp)}<span class="material-symbols-outlined">device_thermostat</span>`;
+  weatherTemp.innerHTML = `<span>${assignTempSymbol(temp, unit)}</span><span class="material-symbols-outlined">device_thermostat</span>`;
   // Get the Wind speed and apply to the DOM
-  const wind = data.wind.speed;
+  const wind = convertWind(data.wind.speed, unit);
   const weatherWind = document.querySelector('.weather-wind');
-  weatherWind.innerHTML = `${wind}<span class="material-symbols-outlined">air</span>`;
+  weatherWind.innerHTML = `<span>${wind}</span><span class="material-symbols-outlined">air</span>`;
   // get the weatherType and icon
   const weatherType = data.weather[0].main;
   const weatherIcon = lookupIcon(data.weather[0].icon);
@@ -32,14 +34,22 @@ export default function renderWeather(data, forecast) {
   // get the Humidity
   const { humidity } = data.main;
   const atmosphereHumidity = document.querySelector('.atmosphere-humidity');
-  atmosphereHumidity.innerHTML = `<span class="material-symbols-outlined">humidity_low</span>${humidity}%`;
+  atmosphereHumidity.innerHTML = `<span class="material-symbols-outlined">humidity_low</span><span>${humidity}%</span>`;
+  // change the temperature units
+  const temperatureChange = document.querySelector('.temperature-change');
+  if (unit === 'metric') {
+    temperatureChange.textContent = 'Change units to F';
+  } else {
+    temperatureChange.textContent = 'Change units to \u00B0C';
+  }
   // for the next 6 3 hour forecasts get each and display
   const hourly = forecast.list;
-  for (let i = 0; i <= 5; i += 1) {
+  for (let i = 0; i <= 9; i += 1) {
     const time = hourly[i].dt + data.timezone;
     const weather = lookupIcon(hourly[i].weather[0].icon);
     const hourTemp = hourly[i].main.temp;
     const hourlyRender = document.querySelector(`#forecast-${i + 1}`);
-    hourlyRender.innerHTML = formatDate(time) + Math.round(hourTemp) + weather;
+    const day = getDay(hourly[i].dt);
+    hourlyRender.innerHTML = `<span>${day}</span><span>${formatDate(time)}</span><span>${weather}</span><span>${assignTempSymbol(hourTemp, unit)}</span>`;
   }
 }

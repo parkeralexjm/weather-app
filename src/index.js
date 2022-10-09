@@ -4,19 +4,23 @@ import renderWeather from './DOMfunctions';
 
 const searchButton = document.querySelector('.search-button');
 const searchInput = document.querySelector('.search-input');
+const temperatureChange = document.querySelector('.temperature-change');
+let lastCity = '';
 
-async function getWeatherData(firstLoad = true) {
+export default async function getWeatherData(firstLoad = true, unit = 'metric') {
   let cityName;
   if (firstLoad) {
     cityName = 'London';
   } else {
     cityName = searchInput.value;
   }
-  const coords = await getCoords(cityName);
+
+  const coords = await getCoords(cityName, unit);
   console.log(coords);
-  const forecast = await getForecast(coords.coord.lon, coords.coord.lat);
+  const forecast = await getForecast(coords.coord.lon, coords.coord.lat, unit);
   console.log(forecast.list);
-  renderWeather(coords, forecast);
+  renderWeather(coords, forecast, unit);
+  lastCity = cityName;
 }
 
 searchButton.addEventListener('click', () => {
