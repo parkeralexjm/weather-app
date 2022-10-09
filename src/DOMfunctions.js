@@ -35,13 +35,6 @@ export default function renderWeather(data, forecast, unit) {
   const { humidity } = data.main;
   const atmosphereHumidity = document.querySelector('.atmosphere-humidity');
   atmosphereHumidity.innerHTML = `<span class="material-symbols-outlined">humidity_low</span><span>${humidity}%</span>`;
-  // change the temperature units
-  const temperatureChange = document.querySelector('.temperature-change');
-  if (unit === 'metric') {
-    temperatureChange.textContent = 'Change units to F';
-  } else {
-    temperatureChange.textContent = 'Change units to \u00B0C';
-  }
   // for the next 6 3 hour forecasts get each and display
   const hourly = forecast.list;
   for (let i = 0; i <= 9; i += 1) {
