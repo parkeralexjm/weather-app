@@ -10,6 +10,6 @@ Search different locations for the current and forecasted weather.
   - Use user location as the default option
   - Allow users to select a daily forecast rather than 3-hour.
 
-Live app
+[Live app](https://parkeralexjm.github.io/weather-app/)
 
 ![Screenshot](/src/assets/live.png "Screenshot")
