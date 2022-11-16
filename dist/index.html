@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Weather</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+  <script defer src="/weather-app/runtime.bundle.js"></script><script defer src="/weather-app/index.bundle.js"></script><script defer src="/weather-app/getWeather.bundle.js"></script><script defer src="/weather-app/domFunctions.bundle.js"></script><script defer src="/weather-app/utility.bundle.js"></script></head>
+
+  <body>
+    <div class="background">
+      <div class="weather-box">
+        <div class="weather-city"></div>
+        <div class="weather-country"></div>
+        <div class="weather-temp">
+        </div>
+        <div class="weather-wind">
+          <p>Wind Speed</p>
+        </div>
+        <div class="search-box">
+          <input type="text" class="search-input" placeholder="Enter a city..."/>
+          <button class="search-button"><span class="material-symbols-outlined">
+            search
+            </span></button>
+        </div>
+        <div class="temperature-change-container">
+          <div class="temperature-change-c">Change to &deg;C</div>
+          <div class="temperature-change-f">Change to F</div>
+        </div>
+        <div class="error-display"></div>
+      </div>
+
+      <div class="atmosphere-box">
+        <div class="atmosphere-icon"></div>
+        <div class="atmosphere-cloud"></div>
+        <div class="atmosphere-desc"></div>
+        <div class="atmosphere-humidity">
+          <p>Humidity</p>
+        </div>
+      </div>
+      <div class="forecast-box">
+      </div>
+  </div>
+  </body>
+</html>
