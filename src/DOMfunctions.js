@@ -67,6 +67,7 @@ function getHourly(data, forecast, unit) {
     hourlyRender.classList.add('three-hour');
     hourlyRender.id = `forecast-${i + 1}`;
     const forecastBox = document.querySelector('.forecast-box');
+    forecastBox.innerHTML = '';
     forecastBox.append(hourlyRender);
   }
 }
